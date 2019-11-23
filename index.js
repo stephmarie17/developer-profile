@@ -12,6 +12,7 @@ const conversion = convertFactory({
 
 const writeFileAsync = util.promisify(fs.writeFile);
 
+// Prompts user for username and favorite color
 function promptUser() {
     return inquirer.prompt([
         {
@@ -20,7 +21,7 @@ function promptUser() {
             name: "username"  
             },
             {
-            // need to figure out how to store color input
+
             type: 'input',
             message: "What is your favorite color?",
             name: "favecolor"
@@ -28,6 +29,7 @@ function promptUser() {
     ])
 };
 
+// Generates the HTML based on user input
 function generateHTML(answers, color) {
     return `
     <!DOCTYPE html>
@@ -85,8 +87,8 @@ function generateHTML(answers, color) {
     </html>`;
 };
 
+// Initializes app with question prompts, then gets data from GitHub API, renders HTML, and converts to PDF
 function init(){
-    //Check process.argv if correct args execute
     promptUser().then(async function({username, favecolor}) {
         const queryUrl = `https://api.github.com/users/${username}`;
         axios.get(queryUrl)
@@ -95,7 +97,7 @@ function init(){
                 const answers = res.data;
                 console.log(answers);
                 const color = favecolor;
-                // once color var works, update the html generate function
+                
                 const html = generateHTML(answers, color);
                 await writeFileAsync("index.html", html)
                 console.log("Index.html successfully created!");
@@ -108,7 +110,7 @@ function init(){
                 console.log(result.numberOfPages);
                 console.log(result.logs);
                 result.stream.pipe(fs.createWriteStream('developerprofile.pdf'));
-                conversion.kill(); // necessary if you use the electron-server strategy, see bellow for details
+                conversion.kill(); 
                 open('developerprofile.pdf')
                 });
 
