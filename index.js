@@ -67,7 +67,7 @@ function generateHTML(answers, color) {
             <h3 class="display-6">My Work</h3>
             <ul class="list-group">
                 <li class="list-group-item"><a href="${answers.html_url}" class="alert-link">GitHub</a></li>
-                <li class="list-group-item"><a href="#" class="alert-link">My Blog</a></li>
+                <li class="list-group-item"><a href="${answers.blog}" class="alert-link">My Blog</a></li>
             </ul>
             </div>
             <div class="alert alert-light" role="alert">
