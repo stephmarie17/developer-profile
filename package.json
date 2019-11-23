@@ -18,8 +18,11 @@
   "homepage": "https://github.com/stephmarie17/developer-profile#readme",
   "dependencies": {
     "axios": "^0.19.0",
+    "electron-html-to": "^2.6.0",
     "electron-pdf": "^4.0.8",
+    "html-pdf": "^2.2.0",
     "inquirer": "^7.0.0",
+    "open": "^7.0.0",
     "util": "^0.12.1"
   }
 }
